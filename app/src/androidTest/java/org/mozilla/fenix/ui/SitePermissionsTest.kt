@@ -83,13 +83,15 @@ class SitePermissionsTest {
             verifyAudioVideoPermissionPrompt(testPageSubstring)
             selectRememberPermissionDecision()
         }.clickPagePermissionButton(true) {
-            verifyPageContent("Camera and Microphone allowed")
+            // verifyPageContent("Camera and Microphone allowed")
+            verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
         }.openThreeDotMenu {
         }.refreshPage {
             waitForPageToLoad()
         }.clickStartAudioVideoButton { }
         browserScreen {
-            verifyPageContent("Camera and Microphone allowed")
+            // verifyPageContent("Camera and Microphone allowed")
+            verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
         }
     }
 
@@ -145,7 +147,7 @@ class SitePermissionsTest {
         }
     }
 
-    @Ignore("Flaky, needs investigation: https://github.com/mozilla-mobile/fenix/issues/23298")
+    // @Ignore("Flaky, needs investigation: https://github.com/mozilla-mobile/fenix/issues/23298")
     @Test
     fun rememberAllowMicrophonePermissionChoiceTest() {
         navigationToolbar {
@@ -156,13 +158,15 @@ class SitePermissionsTest {
             verifyMicrophonePermissionPrompt(testPageSubstring)
             selectRememberPermissionDecision()
         }.clickPagePermissionButton(true) {
-            verifyPageContent("Microphone allowed")
+            // verifyPageContent("Microphone allowed")
+            verifyPermissionResult("microphone-result", "Microphone allowed")
         }.openThreeDotMenu {
         }.refreshPage {
             waitForPageToLoad()
         }.clickStartMicrophoneButton { }
         browserScreen {
-            verifyPageContent("Microphone allowed")
+            // verifyPageContent("Microphone allowed")
+            verifyPermissionResult("microphone-result", "Microphone allowed")
         }
     }
 

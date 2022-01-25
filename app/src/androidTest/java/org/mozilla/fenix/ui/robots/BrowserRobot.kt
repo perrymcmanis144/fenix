@@ -102,6 +102,12 @@ class BrowserRobot {
         }
     }
 
+    fun verifyPermissionResult(permissionId: String, result: String) {
+        val micResult = mDevice.findObject(UiSelector().resourceId(permissionId).childSelector(UiSelector().index(0))).text
+        assertTrue(micResult, mDevice.findObject(UiSelector().textContains(result)).waitForExists(waitingTime))
+    }
+
+
     fun verifyTabCounter(expectedText: String) {
         val counter =
             mDevice.findObject(
