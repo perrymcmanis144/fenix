@@ -86,7 +86,7 @@ class SitePermissionsTest {
             verifyAudioVideoPermissionPrompt(testPageSubstring)
             selectRememberPermissionDecision()
         }.clickPagePermissionButton(true) {
-            verifyPageContent("Success")
+            verifyPermissionResult("result", "Success")
             // verifyPageContent("Camera and Microphone allowed")
             // verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
         }.openThreeDotMenu {
@@ -94,7 +94,7 @@ class SitePermissionsTest {
             waitForPageToLoad()
         }.clickStartAudioVideoButton { }
         browserScreen {
-            verifyPageContent("Success")
+            verifyPermissionResult("result", "Success")
             // verifyPageContent("Camera and Microphone allowed")
             // verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
         }
@@ -166,9 +166,9 @@ class SitePermissionsTest {
             verifyMicrophonePermissionPrompt(testPageSubstring)
             selectRememberPermissionDecision()
         }.clickPagePermissionButton(true) {
-            verifyPageContent("Success")
+            // verifyPageContent("Success")
             // verifyPageContent("Microphone allowed")
-            // verifyPermissionResult("microphone-result", "Microphone allowed")
+            verifyPermissionResult("result", "Success")
         }.openThreeDotMenu {
         }.refreshPage {
             waitForPageToLoad()
@@ -176,7 +176,7 @@ class SitePermissionsTest {
         browserScreen {
             verifyPageContent("Success")
             // verifyPageContent("Microphone allowed")
-            //verifyPermissionResult("microphone-result", "Microphone allowed")
+            verifyPermissionResult("result", "Success")
         }
     }
 
