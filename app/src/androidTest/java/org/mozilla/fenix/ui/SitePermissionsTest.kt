@@ -19,8 +19,8 @@ import org.mozilla.fenix.ui.robots.navigationToolbar
  */
 class SitePermissionsTest {
     /* Test page created and handled by the Mozilla mobile test-eng team */
-    private val testPage = "https://mozilla-mobile.github.io/testapp/permissions"
-    private val testPageSubstring = "https://mozilla-mobile.github.io:443"
+    private var testPage = "https://mozilla-mobile.github.io/testapp/permissions"
+    private var testPageSubstring = "https://mozilla-mobile.github.io:443"
 
     @get:Rule
     val activityTestRule = HomeActivityIntentTestRule()
@@ -72,6 +72,9 @@ class SitePermissionsTest {
     @SmokeTest
     @Test
     fun rememberAllowAudioVideoPermissionChoiceTest() {
+        testPage = "https://sv-ohorvath.github.io/testapp/permissions"
+        testPageSubstring = "https://sv-ohorvath.github.io:443"
+
         navigationToolbar {
         }.enterURLAndEnterToBrowser(testPage.toUri()) {
             waitForPageToLoad()
@@ -83,15 +86,17 @@ class SitePermissionsTest {
             verifyAudioVideoPermissionPrompt(testPageSubstring)
             selectRememberPermissionDecision()
         }.clickPagePermissionButton(true) {
+            verifyPageContent("Success")
             // verifyPageContent("Camera and Microphone allowed")
-            verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
+            // verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
         }.openThreeDotMenu {
         }.refreshPage {
             waitForPageToLoad()
         }.clickStartAudioVideoButton { }
         browserScreen {
+            verifyPageContent("Success")
             // verifyPageContent("Camera and Microphone allowed")
-            verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
+            // verifyPermissionResult("audioVideo-result", "Camera and Microphone allowed")
         }
     }
 
@@ -150,6 +155,9 @@ class SitePermissionsTest {
     // @Ignore("Flaky, needs investigation: https://github.com/mozilla-mobile/fenix/issues/23298")
     @Test
     fun rememberAllowMicrophonePermissionChoiceTest() {
+        testPage = "https://sv-ohorvath.github.io/testapp/permissions"
+        testPageSubstring = "https://sv-ohorvath.github.io:443"
+
         navigationToolbar {
         }.enterURLAndEnterToBrowser(testPage.toUri()) {
             waitForPageToLoad()
@@ -158,15 +166,17 @@ class SitePermissionsTest {
             verifyMicrophonePermissionPrompt(testPageSubstring)
             selectRememberPermissionDecision()
         }.clickPagePermissionButton(true) {
+            verifyPageContent("Success")
             // verifyPageContent("Microphone allowed")
-            verifyPermissionResult("microphone-result", "Microphone allowed")
+            // verifyPermissionResult("microphone-result", "Microphone allowed")
         }.openThreeDotMenu {
         }.refreshPage {
             waitForPageToLoad()
         }.clickStartMicrophoneButton { }
         browserScreen {
+            verifyPageContent("Success")
             // verifyPageContent("Microphone allowed")
-            verifyPermissionResult("microphone-result", "Microphone allowed")
+            //verifyPermissionResult("microphone-result", "Microphone allowed")
         }
     }
 
